@@ -15,106 +15,106 @@
                 <p>Torre DOMUS - 13 Niveles</p>
             </div>
             <ul class="nav-menu">
-    <li><a href="#" onclick="showSection('dashboard')" class="active">📊 Dashboard</a></li>
-    <li><a href="#" onclick="showSection('tickets')">🎫 Tickets</a></li>
-    <li><a href="#" onclick="showSection('new-ticket')">➕ Nuevo Ticket</a></li>
-    <li><a href="#" onclick="showSection('thermostats')">🌡️ Termostatos</a></li>
-    <li><a href="#" onclick="showSection('grilles')">🔲 Rejillas</a></li>
-    <li><a href="#" onclick="showSection('logs')">📋 Logs del Proyecto</a></li>
-</ul>
+                <li><a href="#" onclick="showSection('dashboard')" class="active">📊 Dashboard</a></li>
+                <li><a href="#" onclick="showSection('tickets')">🎫 Tickets</a></li>
+                <li><a href="#" onclick="showSection('new-ticket')">➕ Nuevo Ticket</a></li>
+                <li><a href="#" onclick="showSection('thermostats')">🌡️ Termostatos</a></li>
+                <li><a href="#" onclick="showSection('grilles')">🔲 Rejillas</a></li>
+                <li><a href="#" onclick="showSection('logs')">📋 Logs del Proyecto</a></li>
+            </ul>
         </nav>
 
         <!-- Main Content -->
         <main class="main-content">
-           <!-- Dashboard Section -->
-<section id="dashboard" class="section active">
-    <h1>Dashboard - Torre DOMUS</h1>
-    
-    <!-- Tickets Stats -->
-    <div class="dashboard-section">
-        <h2>🎫 Estado de Tickets</h2>
-        <div class="dashboard-grid">
-            <div class="stat-card">
-                <h3>Total Tickets</h3>
-                <div class="stat-number" id="totalTickets">0</div>
-            </div>
-            <div class="stat-card">
-                <h3>Tickets Abiertos</h3>
-                <div class="stat-number" id="openTickets">0</div>
-            </div>
-            <div class="stat-card">
-                <h3>Tickets Cerrados</h3>
-                <div class="stat-number" id="closedTickets">0</div>
-            </div>
-            <div class="stat-card">
-                <h3>Niveles con Incidencias</h3>
-                <div class="stat-number" id="affectedLevels">0</div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Thermostats Stats -->
-    <div class="dashboard-section">
-        <h2>🌡️ Avance de Termostatos</h2>
-        <div class="dashboard-grid">
-            <div class="stat-card thermo-card">
-                <h3>Total Termostatos</h3>
-                <div class="stat-number" id="dashTotalThermo">0</div>
-            </div>
-            <div class="stat-card thermo-card">
-                <h3>Instalados</h3>
-                <div class="stat-number" id="dashInstalledThermo">0</div>
-            </div>
-            <div class="stat-card thermo-card">
-                <h3>Pendientes</h3>
-                <div class="stat-number" id="dashPendingThermo">0</div>
-            </div>
-            <div class="stat-card thermo-card">
-                <h3>Progreso</h3>
-                <div class="stat-number" id="dashThermoPercent">0%</div>
-            </div>
-        </div>
-        <div class="progress-bar large">
-            <div class="progress-fill thermo-fill" id="dashThermoBar" style="width: 0%"></div>
-        </div>
-    </div>
-    
-    <!-- Grilles Stats -->
-    <div class="dashboard-section">
-        <h2>🔲 Avance de Rejillas</h2>
-        <div class="dashboard-grid">
-            <div class="stat-card grille-card">
-                <h3>Total Rejillas</h3>
-                <div class="stat-number" id="dashTotalGrilles">0</div>
-            </div>
-            <div class="stat-card grille-card">
-                <h3>Instaladas</h3>
-                <div class="stat-number" id="dashInstalledGrilles">0</div>
-            </div>
-            <div class="stat-card grille-card">
-                <h3>Pendientes</h3>
-                <div class="stat-number" id="dashPendingGrilles">0</div>
-            </div>
-            <div class="stat-card grille-card">
-                <h3>Progreso</h3>
-                <div class="stat-number" id="dashGrillePercent">0%</div>
-            </div>
-        </div>
-        <div class="progress-bar large">
-            <div class="progress-fill grille-fill" id="dashGrilleBar" style="width: 0%"></div>
-        </div>
-    </div>
-    
-    <div style="display: flex; gap: 10px; margin: 20px 0;">
-        <button onclick="cleanAllData()" class="btn-clean">🗑️ Limpiar todos los datos</button>
-        <button onclick="Dashboard.exportToPDF()" class="btn-pdf">📄 Exportar Informe PDF</button>
-    </div>
-    
-    <div class="recent-activity">
-        <h2>Últimos Tickets</h2>
-        <div id="recentTickets" class="ticket-list"></div>
-    </div>
-</section>
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="section active">
+                <h1>Dashboard - Torre DOMUS</h1>
+                
+                <!-- Tickets Stats -->
+                <div class="dashboard-section">
+                    <h2>🎫 Estado de Tickets</h2>
+                    <div class="dashboard-grid">
+                        <div class="stat-card">
+                            <h3>Total Tickets</h3>
+                            <div class="stat-number" id="totalTickets">0</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Tickets Abiertos</h3>
+                            <div class="stat-number" id="openTickets">0</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Tickets Cerrados</h3>
+                            <div class="stat-number" id="closedTickets">0</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Niveles con Incidencias</h3>
+                            <div class="stat-number" id="affectedLevels">0</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Thermostats Stats -->
+                <div class="dashboard-section">
+                    <h2>🌡️ Avance de Termostatos</h2>
+                    <div class="dashboard-grid">
+                        <div class="stat-card thermo-card">
+                            <h3>Total Termostatos</h3>
+                            <div class="stat-number" id="dashTotalThermo">0</div>
+                        </div>
+                        <div class="stat-card thermo-card">
+                            <h3>Instalados</h3>
+                            <div class="stat-number" id="dashInstalledThermo">0</div>
+                        </div>
+                        <div class="stat-card thermo-card">
+                            <h3>Pendientes</h3>
+                            <div class="stat-number" id="dashPendingThermo">0</div>
+                        </div>
+                        <div class="stat-card thermo-card">
+                            <h3>Progreso</h3>
+                            <div class="stat-number" id="dashThermoPercent">0%</div>
+                        </div>
+                    </div>
+                    <div class="progress-bar large">
+                        <div class="progress-fill thermo-fill" id="dashThermoBar" style="width: 0%"></div>
+                    </div>
+                </div>
+                
+                <!-- Grilles Stats -->
+                <div class="dashboard-section">
+                    <h2>🔲 Avance de Rejillas</h2>
+                    <div class="dashboard-grid">
+                        <div class="stat-card grille-card">
+                            <h3>Total Rejillas</h3>
+                            <div class="stat-number" id="dashTotalGrilles">0</div>
+                        </div>
+                        <div class="stat-card grille-card">
+                            <h3>Instaladas</h3>
+                            <div class="stat-number" id="dashInstalledGrilles">0</div>
+                        </div>
+                        <div class="stat-card grille-card">
+                            <h3>Pendientes</h3>
+                            <div class="stat-number" id="dashPendingGrilles">0</div>
+                        </div>
+                        <div class="stat-card grille-card">
+                            <h3>Progreso</h3>
+                            <div class="stat-number" id="dashGrillePercent">0%</div>
+                        </div>
+                    </div>
+                    <div class="progress-bar large">
+                        <div class="progress-fill grille-fill" id="dashGrilleBar" style="width: 0%"></div>
+                    </div>
+                </div>
+                
+                <div style="display: flex; gap: 10px; margin: 20px 0;">
+                    <button onclick="cleanAllData()" class="btn-clean">🗑️ Limpiar todos los datos</button>
+                    <button onclick="Dashboard.exportToPDF()" class="btn-pdf">📄 Exportar Informe PDF</button>
+                </div>
+                
+                <div class="recent-activity">
+                    <h2>Últimos Tickets</h2>
+                    <div id="recentTickets" class="ticket-list"></div>
+                </div>
+            </section>
 
             <!-- Tickets Section -->
             <section id="tickets" class="section">
@@ -128,297 +128,297 @@
                     </select>
                     <select id="filterLevel" onchange="filterTickets()">
                         <option value="all">Todos los Niveles</option>
-                        <option value="Lobby">Lobby</option>
+                        <!-- Se llenará dinámicamente -->
                     </select>
                 </div>
                 <div id="allTickets" class="ticket-list"></div>
             </section>
 
             <!-- New Ticket Section -->
-<section id="new-ticket" class="section">
-    <h1>Crear Nuevo Ticket</h1>
-    <form id="ticketForm" onsubmit="createTicket(event)">
-        <div class="form-group">
-    <label for="ticketCondominium">Condominio</label>
-    <input type="text" id="ticketCondominium" required 
-           placeholder="Ej: Torre DOMUS - Nivel 5, Depto 502"
-           list="condominiumSuggestions">
-    <datalist id="condominiumSuggestions">
-        <option value="Torre DOMUS">
-        <option value="Torre A">
-        <option value="Torre B">
-        <option value="Torre C">
-        <option value="Torre D">
-    </datalist>
-    <small style="color: #666; display: block; margin-top: 5px;">
-        💡 Puedes escribir libremente o seleccionar de las sugerencias
-    </small>
-</div>
-        
-        <div class="form-group">
-            <label for="ticketTitle">Título del Ticket</label>
-            <input type="text" id="ticketTitle" required placeholder="Ej: Fuga en ducto de aire acondicionado">
-        </div>
-        
-        <div class="form-group">
-            <label for="ticketLevel">Nivel</label>
-            <select id="ticketLevel" required>
-                <option value="">Seleccionar nivel</option>
-                <!-- Se llenará dinámicamente -->
-            </select>
-        </div>
-        
-        <div class="form-group">
-            <label for="ticketPriority">Prioridad</label>
-            <select id="ticketPriority" required>
-                <option value="baja">Baja</option>
-                <option value="media" selected>Media</option>
-                <option value="alta">Alta</option>
-                <option value="critica">Crítica</option>
-            </select>
-        </div>
-        
-        <div class="form-group">
-            <label for="ticketDescription">Descripción</label>
-            <textarea id="ticketDescription" required placeholder="Describe el problema encontrado..."></textarea>
-        </div>
-        
-        <div class="form-group">
-            <label for="ticketSystem">Sistema HVAC</label>
-            <select id="ticketSystem" required>
-                <option value="">Seleccionar sistema</option>
-                <option value="Equipo">Equipo</option>
-                <option value="Drenaje">Drenaje</option>
-                <option value="Ducteria">Ductería</option>
-                <option value="Sistema de Control">Sistema de Control</option>
-            </select>
-        </div>
-        
-        <button type="submit" class="btn-primary">Crear Ticket</button>
-    </form>
-</section>
-<!-- Edit Ticket Section -->
-<section id="edit-ticket" class="section">
-    <h1>Modificar Ticket</h1>
-    <div id="editTicketContainer" style="display: none;">
-        <form id="editTicketForm" onsubmit="updateTicket(event)">
-            <input type="hidden" id="editTicketId">
-            
-            <div class="form-group">
-    <label for="editTicketCondominium">Condominio</label>
-    <input type="text" id="editTicketCondominium" required 
-           placeholder="Ej: Torre DOMUS - Nivel 5, Depto 502"
-           list="editCondominiumSuggestions">
-    <datalist id="editCondominiumSuggestions">
-        <option value="Torre DOMUS">
-        <option value="Torre A">
-        <option value="Torre B">
-        <option value="Torre C">
-        <option value="Torre D">
-    </datalist>
-    <small style="color: #666; display: block; margin-top: 5px;">
-        💡 Puedes escribir libremente o seleccionar de las sugerencias
-    </small>
-</div>
-            
-            <div class="form-group">
-                <label for="editTicketTitle">Título del Ticket</label>
-                <input type="text" id="editTicketTitle" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="editTicketLevel">Nivel</label>
-                <select id="editTicketLevel" required>
-                    <!-- Se llenará dinámicamente -->
-                </select>
-            </div>
-            
-            <div class="form-group">
-                <label for="editTicketPriority">Prioridad</label>
-                <select id="editTicketPriority" required>
-                    <option value="baja">Baja</option>
-                    <option value="media">Media</option>
-                    <option value="alta">Alta</option>
-                    <option value="critica">Crítica</option>
-                </select>
-            </div>
-            
-            <div class="form-group">
-                <label for="editTicketDescription">Descripción</label>
-                <textarea id="editTicketDescription" required></textarea>
-            </div>
-            
-            <div class="form-group">
-                <label for="editTicketSystem">Sistema HVAC</label>
-                <select id="editTicketSystem" required>
-                    <option value="">Seleccionar sistema</option>
-                    <option value="Equipo">Equipo</option>
-                    <option value="Drenaje">Drenaje</option>
-                    <option value="Ducteria">Ductería</option>
-                    <option value="Sistema de Control">Sistema de Control</option>
-                </select>
-            </div>
-            
-            <div style="display: flex; gap: 10px;">
-                <button type="submit" class="btn-primary">Guardar Cambios</button>
-                <button type="button" class="btn-cancel" onclick="cancelEdit()">Cancelar</button>
-            </div>
-        </form>
-    </div>
-    <div id="noTicketSelected" style="text-align: center; padding: 50px; color: #999;">
-        <h3>Selecciona un ticket para modificar</h3>
-        <p>Ve a la sección de Tickets y haz clic en "Modificar" en el ticket que deseas editar</p>
-    </div>
-</section>
-<!-- Thermostats Section -->
-<section id="thermostats" class="section">
-    <h1>Configuración de Termostatos por Nivel</h1>
-    
-    <div class="config-panel">
-        <div class="config-form">
-            <h2>Configurar Cantidad de Termostatos</h2>
-            <form id="thermostatConfigForm" onsubmit="saveThermostatConfig(event)">
-                <div class="form-row">
+            <section id="new-ticket" class="section">
+                <h1>Crear Nuevo Ticket</h1>
+                <form id="ticketForm" onsubmit="createTicket(event)">
                     <div class="form-group">
-                        <label for="thermoLevel">Nivel</label>
-                        <select id="thermoLevel" required>
+                        <label for="ticketCondominium">Condominio</label>
+                        <input type="text" id="ticketCondominium" required 
+                               placeholder="Ej: Torre DOMUS - Nivel 5, Depto 502"
+                               list="condominiumSuggestions">
+                        <datalist id="condominiumSuggestions">
+                            <option value="Torre DOMUS">
+                            <option value="Torre A">
+                            <option value="Torre B">
+                            <option value="Torre C">
+                            <option value="Torre D">
+                        </datalist>
+                        <small style="color: #666; display: block; margin-top: 5px;">
+                            💡 Puedes escribir libremente o seleccionar de las sugerencias
+                        </small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="ticketTitle">Título del Ticket</label>
+                        <input type="text" id="ticketTitle" required placeholder="Ej: Fuga en ducto de aire acondicionado">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="ticketLevel">Nivel</label>
+                        <select id="ticketLevel" required>
                             <option value="">Seleccionar nivel</option>
                             <!-- Se llenará dinámicamente -->
                         </select>
                     </div>
                     
                     <div class="form-group">
-                        <label for="thermoTotal">Total de Termostatos</label>
-                        <input type="number" id="thermoTotal" required min="0" placeholder="Cantidad total planificada">
+                        <label for="ticketPriority">Prioridad</label>
+                        <select id="ticketPriority" required>
+                            <option value="baja">Baja</option>
+                            <option value="media" selected>Media</option>
+                            <option value="alta">Alta</option>
+                            <option value="critica">Crítica</option>
+                        </select>
                     </div>
                     
                     <div class="form-group">
-                        <label for="thermoInstalled">Termostatos Instalados</label>
-                        <input type="number" id="thermoInstalled" required min="0" placeholder="Cantidad instalada">
+                        <label for="ticketDescription">Descripción</label>
+                        <textarea id="ticketDescription" required placeholder="Describe el problema encontrado..."></textarea>
                     </div>
-                </div>
-                
-                <button type="submit" class="btn-primary">💾 Guardar Configuración</button>
-            </form>
-        </div>
-        
-        <div class="config-summary" id="thermostatSummary">
-            <h2>Resumen de Termostatos</h2>
-            <div class="summary-stats">
-                <div class="mini-stat">
-                    <span class="mini-stat-number" id="totalThermo">0</span>
-                    <span class="mini-stat-label">Total Planificados</span>
-                </div>
-                <div class="mini-stat">
-                    <span class="mini-stat-number" id="installedThermo">0</span>
-                    <span class="mini-stat-label">Instalados</span>
-                </div>
-                <div class="mini-stat">
-                    <span class="mini-stat-number" id="pendingThermo">0</span>
-                    <span class="mini-stat-label">Pendientes</span>
-                </div>
-            </div>
-            <div class="progress-bar">
-                <div class="progress-fill" id="thermoProgress" style="width: 0%"></div>
-            </div>
-            <p style="text-align: center; margin-top: 5px;">
-                <span id="thermoPercent">0%</span> completado
-            </p>
-        </div>
-    </div>
-    
-    <div class="config-table-container">
-        <h2>Configuración por Nivel</h2>
-        <div id="thermostatTable"></div>
-    </div>
-</section>
+                    
+                    <div class="form-group">
+                        <label for="ticketSystem">Sistema HVAC</label>
+                        <select id="ticketSystem" required>
+                            <option value="">Seleccionar sistema</option>
+                            <option value="Equipo">Equipo</option>
+                            <option value="Drenaje">Drenaje</option>
+                            <option value="Ducteria">Ductería</option>
+                            <option value="Sistema de Control">Sistema de Control</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="btn-primary">Crear Ticket</button>
+                </form>
+            </section>
 
-<!-- Grilles Section -->
-<section id="grilles" class="section">
-    <h1>Configuración de Rejillas por Nivel</h1>
-    
-    <div class="config-panel">
-        <div class="config-form">
-            <h2>Configurar Cantidad de Rejillas</h2>
-            <form id="grilleConfigForm" onsubmit="saveGrilleConfig(event)">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="grilleLevel">Nivel</label>
-                        <select id="grilleLevel" required>
-                            <option value="">Seleccionar nivel</option>
-                            <!-- Se llenará dinámicamente -->
-                        </select>
+            <!-- Edit Ticket Section -->
+            <section id="edit-ticket" class="section">
+                <h1>Modificar Ticket</h1>
+                <div id="editTicketContainer" style="display: none;">
+                    <form id="editTicketForm" onsubmit="updateTicket(event)">
+                        <input type="hidden" id="editTicketId">
+                        
+                        <div class="form-group">
+                            <label for="editTicketCondominium">Condominio</label>
+                            <input type="text" id="editTicketCondominium" required 
+                                   placeholder="Ej: Torre DOMUS - Nivel 5, Depto 502"
+                                   list="editCondominiumSuggestions">
+                            <datalist id="editCondominiumSuggestions">
+                                <option value="Torre DOMUS">
+                                <option value="Torre A">
+                                <option value="Torre B">
+                                <option value="Torre C">
+                                <option value="Torre D">
+                            </datalist>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="editTicketTitle">Título del Ticket</label>
+                            <input type="text" id="editTicketTitle" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="editTicketLevel">Nivel</label>
+                            <select id="editTicketLevel" required>
+                                <!-- Se llenará dinámicamente -->
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="editTicketPriority">Prioridad</label>
+                            <select id="editTicketPriority" required>
+                                <option value="baja">Baja</option>
+                                <option value="media">Media</option>
+                                <option value="alta">Alta</option>
+                                <option value="critica">Crítica</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="editTicketDescription">Descripción</label>
+                            <textarea id="editTicketDescription" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="editTicketSystem">Sistema HVAC</label>
+                            <select id="editTicketSystem" required>
+                                <option value="">Seleccionar sistema</option>
+                                <option value="Equipo">Equipo</option>
+                                <option value="Drenaje">Drenaje</option>
+                                <option value="Ducteria">Ductería</option>
+                                <option value="Sistema de Control">Sistema de Control</option>
+                            </select>
+                        </div>
+                        
+                        <div style="display: flex; gap: 10px;">
+                            <button type="submit" class="btn-primary">Guardar Cambios</button>
+                            <button type="button" class="btn-cancel" onclick="cancelEdit()">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+                <div id="noTicketSelected" style="text-align: center; padding: 50px; color: #999;">
+                    <h3>Selecciona un ticket para modificar</h3>
+                    <p>Ve a la sección de Tickets y haz clic en "Modificar" en el ticket que deseas editar</p>
+                </div>
+            </section>
+
+            <!-- Thermostats Section -->
+            <section id="thermostats" class="section">
+                <h1>Configuración de Termostatos por Nivel</h1>
+                
+                <div class="config-panel">
+                    <div class="config-form">
+                        <h2>Configurar Cantidad de Termostatos</h2>
+                        <form id="thermostatConfigForm" onsubmit="saveThermostatConfig(event)">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="thermoLevel">Nivel</label>
+                                    <select id="thermoLevel" required>
+                                        <option value="">Seleccionar nivel</option>
+                                        <!-- Se llenará dinámicamente -->
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="thermoTotal">Total de Termostatos</label>
+                                    <input type="number" id="thermoTotal" required min="0" placeholder="Cantidad total planificada">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="thermoInstalled">Termostatos Instalados</label>
+                                    <input type="number" id="thermoInstalled" required min="0" placeholder="Cantidad instalada">
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="btn-primary">💾 Guardar Configuración</button>
+                        </form>
                     </div>
                     
-                    <div class="form-group">
-                        <label for="grilleTotalReturn">Total Rejillas de Retorno</label>
-                        <input type="number" id="grilleTotalReturn" required min="0" placeholder="Cantidad total planificada">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="grilleInstalledReturn">Retorno Instaladas</label>
-                        <input type="number" id="grilleInstalledReturn" required min="0" placeholder="Cantidad instalada">
+                    <div class="config-summary" id="thermostatSummary">
+                        <h2>Resumen de Termostatos</h2>
+                        <div class="summary-stats">
+                            <div class="mini-stat">
+                                <span class="mini-stat-number" id="totalThermo">0</span>
+                                <span class="mini-stat-label">Total Planificados</span>
+                            </div>
+                            <div class="mini-stat">
+                                <span class="mini-stat-number" id="installedThermo">0</span>
+                                <span class="mini-stat-label">Instalados</span>
+                            </div>
+                            <div class="mini-stat">
+                                <span class="mini-stat-number" id="pendingThermo">0</span>
+                                <span class="mini-stat-label">Pendientes</span>
+                            </div>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill thermo-fill" id="thermoProgress" style="width: 0%"></div>
+                        </div>
+                        <p style="text-align: center; margin-top: 5px;">
+                            <span id="thermoPercent">0%</span> completado
+                        </p>
                     </div>
                 </div>
                 
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="grilleTotalSupply">Total Rejillas de Suministro</label>
-                        <input type="number" id="grilleTotalSupply" required min="0" placeholder="Cantidad total planificada">
+                <div class="config-table-container">
+                    <h2>Configuración por Nivel</h2>
+                    <div id="thermostatTable"></div>
+                </div>
+            </section>
+
+            <!-- Grilles Section -->
+            <section id="grilles" class="section">
+                <h1>Configuración de Rejillas por Nivel</h1>
+                
+                <div class="config-panel">
+                    <div class="config-form">
+                        <h2>Configurar Cantidad de Rejillas</h2>
+                        <form id="grilleConfigForm" onsubmit="saveGrilleConfig(event)">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="grilleLevel">Nivel</label>
+                                    <select id="grilleLevel" required>
+                                        <option value="">Seleccionar nivel</option>
+                                        <!-- Se llenará dinámicamente -->
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="grilleTotalReturn">Total Rejillas de Retorno</label>
+                                    <input type="number" id="grilleTotalReturn" required min="0" placeholder="Cantidad total planificada">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="grilleInstalledReturn">Retorno Instaladas</label>
+                                    <input type="number" id="grilleInstalledReturn" required min="0" placeholder="Cantidad instalada">
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="grilleTotalSupply">Total Rejillas de Suministro</label>
+                                    <input type="number" id="grilleTotalSupply" required min="0" placeholder="Cantidad total planificada">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="grilleInstalledSupply">Suministro Instaladas</label>
+                                    <input type="number" id="grilleInstalledSupply" required min="0" placeholder="Cantidad instalada">
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="btn-primary">💾 Guardar Configuración</button>
+                        </form>
                     </div>
                     
-                    <div class="form-group">
-                        <label for="grilleInstalledSupply">Suministro Instaladas</label>
-                        <input type="number" id="grilleInstalledSupply" required min="0" placeholder="Cantidad instalada">
+                    <div class="config-summary" id="grilleSummary">
+                        <h2>Resumen de Rejillas</h2>
+                        <div class="summary-stats">
+                            <div class="mini-stat">
+                                <span class="mini-stat-number" id="totalGrilles">0</span>
+                                <span class="mini-stat-label">Total Planificadas</span>
+                            </div>
+                            <div class="mini-stat">
+                                <span class="mini-stat-number" id="installedGrilles">0</span>
+                                <span class="mini-stat-label">Instaladas</span>
+                            </div>
+                            <div class="mini-stat">
+                                <span class="mini-stat-number" id="pendingGrilles">0</span>
+                                <span class="mini-stat-label">Pendientes</span>
+                            </div>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill grille-fill" id="grilleProgress" style="width: 0%"></div>
+                        </div>
+                        <p style="text-align: center; margin-top: 5px;">
+                            <span id="grillePercent">0%</span> completado
+                        </p>
+                        
+                        <div class="grille-detail">
+                            <h3>Detalle por Tipo</h3>
+                            <div class="detail-row">
+                                <span>🔄 Retorno:</span>
+                                <span><strong id="returnInstalled">0</strong>/<span id="returnTotal">0</span></span>
+                            </div>
+                            <div class="detail-row">
+                                <span>➡️ Suministro:</span>
+                                <span><strong id="supplyInstalled">0</strong>/<span id="supplyTotal">0</span></span>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
-                <button type="submit" class="btn-primary">💾 Guardar Configuración</button>
-            </form>
-        </div>
-        
-        <div class="config-summary" id="grilleSummary">
-            <h2>Resumen de Rejillas</h2>
-            <div class="summary-stats">
-                <div class="mini-stat">
-                    <span class="mini-stat-number" id="totalGrilles">0</span>
-                    <span class="mini-stat-label">Total Planificadas</span>
+                <div class="config-table-container">
+                    <h2>Configuración por Nivel</h2>
+                    <div id="grilleTable"></div>
                 </div>
-                <div class="mini-stat">
-                    <span class="mini-stat-number" id="installedGrilles">0</span>
-                    <span class="mini-stat-label">Instaladas</span>
-                </div>
-                <div class="mini-stat">
-                    <span class="mini-stat-number" id="pendingGrilles">0</span>
-                    <span class="mini-stat-label">Pendientes</span>
-                </div>
-            </div>
-            <div class="progress-bar">
-                <div class="progress-fill" id="grilleProgress" style="width: 0%"></div>
-            </div>
-            <p style="text-align: center; margin-top: 5px;">
-                <span id="grillePercent">0%</span> completado
-            </p>
-            
-            <div class="grille-detail">
-                <h3>Detalle por Tipo</h3>
-                <div class="detail-row">
-                    <span>🔄 Retorno:</span>
-                    <span><strong id="returnInstalled">0</strong>/<span id="returnTotal">0</span></span>
-                </div>
-                <div class="detail-row">
-                    <span>➡️ Suministro:</span>
-                    <span><strong id="supplyInstalled">0</strong>/<span id="supplyTotal">0</span></span>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="config-table-container">
-        <h2>Configuración por Nivel</h2>
-        <div id="grilleTable"></div>
-    </div>
-</section>
+            </section>
+
             <!-- Logs Section -->
             <section id="logs" class="section">
                 <h1>Logs del Proyecto</h1>
@@ -428,10 +428,10 @@
     </div>
 
     <script src="data/storage.js"></script>
-<script src="js/tickets.js"></script>
-<script src="js/thermostats.js"></script>
-<script src="js/grilles.js"></script>
-<script src="js/dashboard.js"></script>
-<script src="js/app.js"></script>
+    <script src="js/tickets.js"></script>
+    <script src="js/thermostats.js"></script>
+    <script src="js/grilles.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>

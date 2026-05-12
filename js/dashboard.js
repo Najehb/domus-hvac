@@ -3,56 +3,56 @@ const Dashboard = {
     update: function() {
         const tickets = Storage.getTickets();
         
-        // Actualizar estadísticas
-        document.getElementById('totalTickets').textContent = tickets.length;
+        // Actualizar estadísticas de tickets
+        const totalTickets = document.getElementById('totalTickets');
+        const openTickets = document.getElementById('openTickets');
+        const closedTickets = document.getElementById('closedTickets');
+        const affectedLevels = document.getElementById('affectedLevels');
         
-        const openTickets = tickets.filter(t => t.status !== 'cerrado').length;
-        document.getElementById('openTickets').textContent = openTickets;
+        if (totalTickets) totalTickets.textContent = tickets.length;
         
-        const closedTickets = tickets.filter(t => t.status === 'cerrado').length;
-        document.getElementById('closedTickets').textContent = closedTickets;
+        const openCount = tickets.filter(t => t.status !== 'cerrado').length;
+        if (openTickets) openTickets.textContent = openCount;
+        
+        const closedCount = tickets.filter(t => t.status === 'cerrado').length;
+        if (closedTickets) closedTickets.textContent = closedCount;
         
         // Niveles únicos con tickets abiertos
-        const affectedLevels = new Set(
+        const levelsSet = new Set(
             tickets
                 .filter(t => t.status !== 'cerrado')
                 .map(t => t.level)
         );
-        document.getElementById('affectedLevels').textContent = affectedLevels.size;
+        if (affectedLevels) affectedLevels.textContent = levelsSet.size;
         
         // Mostrar últimos 5 tickets
         const recentTickets = tickets.slice(-5).reverse();
         TicketManager.renderList(recentTickets, 'recentTickets');
         
-        // Agregar botón de PDF si no existe
-        if (!document.getElementById('btnExportPDF')) {
-            const dashboardSection = document.getElementById('dashboard');
-            const btnPDF = document.createElement('button');
-            btnPDF.id = 'btnExportPDF';
-            btnPDF.className = 'btn-pdf';
-            btnPDF.textContent = '📄 Exportar Informe PDF';
-            btnPDF.onclick = Dashboard.exportToPDF;
-            
-            // Insertar después del grid de estadísticas
-            const recentActivity = dashboardSection.querySelector('.recent-activity');
-            if (recentActivity) {
-                recentActivity.parentNode.insertBefore(btnPDF, recentActivity);
-            }
+        // Actualizar estadísticas de termostatos y rejillas
+        if (typeof ThermostatManager !== 'undefined') {
+            ThermostatManager.updateSummary();
         }
-        // En la función update(), agrega:
-// Actualizar estadísticas de termostatos y rejillas
-if (typeof ThermostatManager !== 'undefined') {
-    ThermostatManager.updateSummary();
-}
-if (typeof GrilleManager !== 'undefined') {
-    GrilleManager.updateSummary();
-}
+        if (typeof GrilleManager !== 'undefined') {
+            GrilleManager.updateSummary();
+        }
     },
     
     // Exportar a PDF
     exportToPDF: function() {
         const tickets = Storage.getTickets();
         const openTickets = tickets.filter(t => t.status !== 'cerrado');
+        
+        // Obtener datos de termostatos y rejillas
+        let thermoStats = { total: 0, installed: 0, pending: 0, percent: 0 };
+        let grilleStats = { total: 0, installed: 0, pending: 0, percent: 0 };
+        
+        if (typeof ThermostatManager !== 'undefined') {
+            thermoStats = ThermostatManager.getStats();
+        }
+        if (typeof GrilleManager !== 'undefined') {
+            grilleStats = GrilleManager.getStats();
+        }
         
         // Crear contenido del informe
         let content = `
@@ -88,16 +88,19 @@ if (typeof GrilleManager !== 'undefined') {
                     .priority-critica { color: #d32f2f; font-weight: bold; }
                     .priority-alta { color: #f57c00; font-weight: bold; }
                     .footer { margin-top: 30px; font-size: 12px; color: #666; }
+                    .progress-bar { width: 100%; height: 10px; background: #e0e0e0; border-radius: 5px; margin: 5px 0; }
+                    .progress-fill { height: 100%; background: #4caf50; border-radius: 5px; }
                 </style>
             </head>
             <body>
                 <div class="header">
-                    <h1>INFORME DE PENDIENTES HVAC</h1>
+                    <h1>INFORME DE PROYECTO HVAC</h1>
                     <p><strong>Proyecto:</strong> Torre DOMUS</p>
                     <p><strong>Fecha:</strong> ${new Date().toLocaleDateString()}</p>
-                    <p><strong>Generado por:</strong> Ingeniero Mecánico</p>
+                    <p><strong>Generado por:</strong> Ing. Nelson Hernandez</p>
                 </div>
                 
+                <h2>Resumen General</h2>
                 <div class="stats">
                     <div class="stat-box">
                         <div class="stat-number">${tickets.length}</div>
@@ -105,11 +108,15 @@ if (typeof GrilleManager !== 'undefined') {
                     </div>
                     <div class="stat-box">
                         <div class="stat-number">${openTickets.length}</div>
-                        <div>Pendientes</div>
+                        <div>Tickets Pendientes</div>
                     </div>
                     <div class="stat-box">
-                        <div class="stat-number">${tickets.filter(t => t.status === 'cerrado').length}</div>
-                        <div>Cerrados</div>
+                        <div class="stat-number">${thermoStats.percent}%</div>
+                        <div>Avance Termostatos</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">${grilleStats.percent}%</div>
+                        <div>Avance Rejillas</div>
                     </div>
                 </div>
                 
@@ -147,10 +154,7 @@ if (typeof GrilleManager !== 'undefined') {
                 `;
             });
             
-            content += `
-                    </tbody>
-                </table>
-            `;
+            content += '</tbody></table>';
         } else {
             content += '<p>No hay tickets pendientes.</p>';
         }
@@ -169,10 +173,8 @@ if (typeof GrilleManager !== 'undefined') {
         printWindow.document.write(content);
         printWindow.document.close();
         
-        // Esperar a que cargue y luego imprimir
         printWindow.onload = function() {
             printWindow.print();
-            // printWindow.close(); // Descomentar si quieres que se cierre automáticamente
         };
     },
     
@@ -180,6 +182,8 @@ if (typeof GrilleManager !== 'undefined') {
     renderLogs: function() {
         const logs = Storage.getLogs();
         const container = document.getElementById('projectLogs');
+        
+        if (!container) return;
         
         if (logs.length === 0) {
             container.innerHTML = '<p style="padding: 20px; text-align: center; color: #999;">No hay actividad registrada</p>';

@@ -9,6 +9,11 @@ const TicketManager = {
         return levels;
     },
     
+    // Obtener niveles (para uso externo)
+    getLevels: function() {
+        return this.generateLevels();
+    },
+    
     // Inicializar niveles en los select
     initLevels: function() {
         const levels = this.generateLevels();
@@ -18,7 +23,21 @@ const TicketManager = {
             const select = document.getElementById(selectId);
             if (select) {
                 // Limpiar opciones existentes
-                select.innerHTML = '<option value="">Seleccionar nivel</option>';
+                select.innerHTML = '';
+                
+                // Si es el filtro, agregar opción "Todos"
+                if (selectId === 'filterLevel') {
+                    const allOption = document.createElement('option');
+                    allOption.value = 'all';
+                    allOption.textContent = 'Todos los Niveles';
+                    select.appendChild(allOption);
+                } else {
+                    // Para los otros select, agregar opción por defecto
+                    const defaultOption = document.createElement('option');
+                    defaultOption.value = '';
+                    defaultOption.textContent = 'Seleccionar nivel';
+                    select.appendChild(defaultOption);
+                }
                 
                 // Agregar niveles
                 levels.forEach(level => {
@@ -27,12 +46,6 @@ const TicketManager = {
                     option.textContent = level;
                     select.appendChild(option);
                 });
-                
-                // Si es el filtro, agregar opción "Todos"
-                if (selectId === 'filterLevel') {
-                    select.innerHTML = '<option value="all">Todos los Niveles</option>' + select.innerHTML;
-                    select.querySelector('option[value="all"]').selected = true;
-                }
             }
         });
     },
@@ -139,6 +152,8 @@ const TicketManager = {
     renderList: function(tickets, containerId, showEditButton = false) {
         const container = document.getElementById(containerId);
         
+        if (!container) return;
+        
         if (tickets.length === 0) {
             container.innerHTML = '<p style="padding: 20px; text-align: center; color: #999;">No hay tickets para mostrar</p>';
             return;
@@ -147,13 +162,12 @@ const TicketManager = {
         let html = '';
         tickets.forEach(ticket => {
             const priorityClass = `priority-${ticket.priority}`;
-            const statusClass = `status-${ticket.status}`;
             
             html += `
                 <div class="ticket-item">
                     <div class="ticket-info">
                         <h4>${ticket.title} 
-                            <small style="color: #666;">[${ticket.condominium}]</small>
+                            <small style="color: #666;">[${ticket.condominium || 'Sin condominio'}]</small>
                         </h4>
                         <div class="ticket-meta">
                             <span class="${priorityClass}">[${ticket.priority.toUpperCase()}]</span>

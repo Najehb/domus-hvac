@@ -76,6 +76,16 @@ body {
 }
 
 /* Dashboard */
+.dashboard-section {
+    margin-bottom: 30px;
+}
+
+.dashboard-section h2 {
+    color: #1a237e;
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
 .dashboard-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -100,6 +110,14 @@ body {
     font-size: 36px;
     font-weight: bold;
     color: #1a237e;
+}
+
+.thermo-card {
+    border-left: 4px solid #ff6f00;
+}
+
+.grille-card {
+    border-left: 4px solid #1565c0;
 }
 
 /* Tickets */
@@ -130,6 +148,12 @@ body {
 .ticket-meta {
     font-size: 14px;
     color: #666;
+}
+
+.ticket-actions {
+    display: flex;
+    gap: 5px;
+    align-items: center;
 }
 
 .status-badge {
@@ -198,6 +222,12 @@ body {
     resize: vertical;
 }
 
+.form-group small {
+    font-size: 12px;
+    margin-top: 5px;
+    display: block;
+}
+
 .btn-primary {
     background: #1a237e;
     color: white;
@@ -229,6 +259,82 @@ body {
     border-radius: 3px;
     cursor: pointer;
     margin-left: 5px;
+}
+
+.btn-edit {
+    background: #ff9800;
+    color: white;
+    padding: 5px 15px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.btn-edit:hover {
+    background: #f57c00;
+}
+
+.btn-cancel {
+    background: #9e9e9e;
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn-cancel:hover {
+    background: #757575;
+}
+
+.btn-pdf {
+    background: #d32f2f;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn-pdf:hover {
+    background: #b71c1c;
+}
+
+.btn-clean {
+    background: #f44336;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-clean:hover {
+    background: #d32f2f;
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.btn-small {
+    padding: 5px 10px;
+    font-size: 12px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.btn-edit-config {
+    background: #ff9800;
+    color: white;
+}
+
+.btn-delete-config {
+    background: #f44336;
+    color: white;
 }
 
 /* Filters */
@@ -272,78 +378,12 @@ body {
 .log-entry.closure {
     border-left: 3px solid #2196f3;
 }
-/* Botones adicionales */
-.btn-edit {
-    background: #ff9800;
-    color: white;
-    padding: 5px 15px;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    margin-left: 5px;
+
+.log-entry.modification {
+    border-left: 3px solid #ff9800;
 }
 
-.btn-edit:hover {
-    background: #f57c00;
-}
-
-.btn-cancel {
-    background: #9e9e9e;
-    color: white;
-    padding: 12px 30px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-.btn-cancel:hover {
-    background: #757575;
-}
-
-/* Botón de exportar PDF */
-.btn-pdf {
-    background: #d32f2f;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    margin-top: 20px;
-}
-
-.btn-pdf:hover {
-    background: #b71c1c;
-}
-
-/* Modal para seleccionar ticket a editar */
-.ticket-actions {
-    display: flex;
-    gap: 5px;
-    align-items: center;
-}
-
-/* Estilos para el dashboard header */
-.dashboard-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-/* Estilos para mensaje de no selección */
-#noTicketSelected {
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}/* Estilos para el campo de texto con sugerencias */
-.form-group small {
-    font-size: 12px;
-    margin-top: 5px;
-    display: block;
-}
-/* Estilos para los nuevos módulos */
+/* Config Panels */
 .config-panel {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -482,77 +522,6 @@ body {
     font-weight: bold;
 }
 
-.config-table .actions {
-    display: flex;
-    gap: 5px;
-}
-
-.btn-small {
-    padding: 5px 10px;
-    font-size: 12px;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-}
-
-.btn-edit-config {
-    background: #ff9800;
-    color: white;
-}
-
-.btn-delete-config {
-    background: #f44336;
-    color: white;
-}
-
-/* Dashboard sections */
-.dashboard-section {
-    margin-bottom: 30px;
-}
-
-.dashboard-section h2 {
-    color: #1a237e;
-    margin-bottom: 15px;
-    font-size: 20px;
-}
-
-.thermo-card {
-    border-left: 4px solid #ff6f00;
-}
-
-.grille-card {
-    border-left: 4px solid #1565c0;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .config-panel {
-        grid-template-columns: 1fr;
-    }
-    
-    .form-row {
-        grid-template-columns: 1fr;
-    }
-    
-    .summary-stats {
-        flex-direction: column;
-        gap: 15px;
-    }
-}
-/* Estilo para el datalist */
-input[list] {
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%23666" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>');
-    background-repeat: no-repeat;
-    background-position: right 10px center;
-    padding-right: 30px;
-}
-
-/* Mejorar la experiencia en móviles */
-@media (max-width: 768px) {
-    input[list] {
-        font-size: 16px; /* Evita zoom en iOS */
-    }
-}
 /* Responsive */
 @media (max-width: 768px) {
     .container {
@@ -565,5 +534,18 @@ input[list] {
     
     .filters {
         flex-direction: column;
+    }
+    
+    .config-panel {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .summary-stats {
+        flex-direction: column;
+        gap: 15px;
     }
 }

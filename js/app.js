@@ -20,10 +20,13 @@ function showSection(sectionName) {
     });
     
     // Encontrar el link clickeado
-    const clickedLink = document.querySelector(`[onclick="showSection('${sectionName}')"]`);
-    if (clickedLink) {
-        clickedLink.classList.add('active');
-    }
+    const links = document.querySelectorAll('.nav-menu a');
+    links.forEach(link => {
+        const onclick = link.getAttribute('onclick');
+        if (onclick && onclick.includes(`'${sectionName}'`)) {
+            link.classList.add('active');
+        }
+    });
     
     // Actualizar contenido según la sección
     switch(sectionName) {
@@ -33,13 +36,25 @@ function showSection(sectionName) {
         case 'tickets':
             filterTickets();
             break;
+        case 'thermostats':
+            if (typeof ThermostatManager !== 'undefined') {
+                ThermostatManager.init();
+            }
+            break;
+        case 'grilles':
+            if (typeof GrilleManager !== 'undefined') {
+                GrilleManager.init();
+            }
+            break;
         case 'logs':
             Dashboard.renderLogs();
             break;
         case 'edit-ticket':
             if (!currentEditTicket) {
-                document.getElementById('editTicketContainer').style.display = 'none';
-                document.getElementById('noTicketSelected').style.display = 'block';
+                const editContainer = document.getElementById('editTicketContainer');
+                const noTicket = document.getElementById('noTicketSelected');
+                if (editContainer) editContainer.style.display = 'none';
+                if (noTicket) noTicket.style.display = 'block';
             }
             break;
     }
@@ -77,7 +92,7 @@ function editTicket(ticketId) {
         
         // Llenar formulario de edición
         document.getElementById('editTicketId').value = ticket.id;
-        document.getElementById('editTicketCondominium').value = ticket.condominium || 'Torre DOMUS';
+        document.getElementById('editTicketCondominium').value = ticket.condominium || '';
         document.getElementById('editTicketTitle').value = ticket.title;
         document.getElementById('editTicketLevel').value = ticket.level;
         document.getElementById('editTicketPriority').value = ticket.priority;
@@ -159,20 +174,15 @@ function filterTickets() {
     TicketManager.renderList(filteredTickets, 'allTickets', true);
 }
 
-// Inicializar la aplicación
-document.addEventListener('DOMContentLoaded', function() {
-    TicketManager.initLevels();
-    Dashboard.update();
-});
 // Funciones para Termostatos
 function saveThermostatConfig(event) {
     event.preventDefault();
     
     const level = document.getElementById('thermoLevel').value;
-    const total = document.getElementById('thermoTotal').value;
-    const installed = document.getElementById('thermoInstalled').value;
+    const total = parseInt(document.getElementById('thermoTotal').value);
+    const installed = parseInt(document.getElementById('thermoInstalled').value);
     
-    if (parseInt(installed) > parseInt(total)) {
+    if (installed > total) {
         alert('❌ Los termostatos instalados no pueden ser mayores que el total');
         return;
     }
@@ -195,17 +205,17 @@ function saveGrilleConfig(event) {
     event.preventDefault();
     
     const level = document.getElementById('grilleLevel').value;
-    const returnTotal = document.getElementById('grilleTotalReturn').value;
-    const returnInstalled = document.getElementById('grilleInstalledReturn').value;
-    const supplyTotal = document.getElementById('grilleTotalSupply').value;
-    const supplyInstalled = document.getElementById('grilleInstalledSupply').value;
+    const returnTotal = parseInt(document.getElementById('grilleTotalReturn').value);
+    const returnInstalled = parseInt(document.getElementById('grilleInstalledReturn').value);
+    const supplyTotal = parseInt(document.getElementById('grilleTotalSupply').value);
+    const supplyInstalled = parseInt(document.getElementById('grilleInstalledSupply').value);
     
-    if (parseInt(returnInstalled) > parseInt(returnTotal)) {
+    if (returnInstalled > returnTotal) {
         alert('❌ Las rejillas de retorno instaladas no pueden ser mayores que el total');
         return;
     }
     
-    if (parseInt(supplyInstalled) > parseInt(supplyTotal)) {
+    if (supplyInstalled > supplyTotal) {
         alert('❌ Las rejillas de suministro instaladas no pueden ser mayores que el total');
         return;
     }
@@ -222,6 +232,8 @@ function saveGrilleConfig(event) {
     
     alert('✅ Configuración de rejillas guardada exitosamente');
 }
+
+// Función para limpiar todos los datos
 function cleanAllData() {
     if (confirm('⚠️ ¿Estás ABSOLUTAMENTE seguro?\n\nEsta acción eliminará:\n- Todos los tickets\n- Configuración de termostatos\n- Configuración de rejillas\n- Todos los logs\n\nEsta acción NO se puede deshacer.')) {
         if (confirm('⚠️ ÚLTIMA ADVERTENCIA\n\nSe borrarán TODOS los datos del sistema.\n¿Deseas continuar?')) {
@@ -243,3 +255,21 @@ function cleanAllData() {
         }
     }
 }
+
+// Inicializar la aplicación
+document.addEventListener('DOMContentLoaded', function() {
+    // Inicializar niveles en los formularios de tickets
+    TicketManager.initLevels();
+    
+    // Inicializar módulos de termostatos y rejillas
+    if (typeof ThermostatManager !== 'undefined') {
+        ThermostatManager.init();
+    }
+    
+    if (typeof GrilleManager !== 'undefined') {
+        GrilleManager.init();
+    }
+    
+    // Actualizar dashboard
+    Dashboard.update();
+});
