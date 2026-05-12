@@ -39,6 +39,14 @@ const Dashboard = {
                 recentActivity.parentNode.insertBefore(btnPDF, recentActivity);
             }
         }
+        // En la función update(), agrega:
+// Actualizar estadísticas de termostatos y rejillas
+if (typeof ThermostatManager !== 'undefined') {
+    ThermostatManager.updateSummary();
+}
+if (typeof GrilleManager !== 'undefined') {
+    GrilleManager.updateSummary();
+}
     },
     
     // Exportar a PDF

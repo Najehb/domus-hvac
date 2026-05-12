@@ -164,3 +164,82 @@ document.addEventListener('DOMContentLoaded', function() {
     TicketManager.initLevels();
     Dashboard.update();
 });
+// Funciones para Termostatos
+function saveThermostatConfig(event) {
+    event.preventDefault();
+    
+    const level = document.getElementById('thermoLevel').value;
+    const total = document.getElementById('thermoTotal').value;
+    const installed = document.getElementById('thermoInstalled').value;
+    
+    if (parseInt(installed) > parseInt(total)) {
+        alert('❌ Los termostatos instalados no pueden ser mayores que el total');
+        return;
+    }
+    
+    ThermostatManager.saveConfig(level, total, installed);
+    
+    // Limpiar formulario
+    document.getElementById('thermostatConfigForm').reset();
+    
+    // Actualizar vista
+    ThermostatManager.updateSummary();
+    ThermostatManager.renderTable();
+    Dashboard.update();
+    
+    alert('✅ Configuración de termostatos guardada exitosamente');
+}
+
+// Funciones para Rejillas
+function saveGrilleConfig(event) {
+    event.preventDefault();
+    
+    const level = document.getElementById('grilleLevel').value;
+    const returnTotal = document.getElementById('grilleTotalReturn').value;
+    const returnInstalled = document.getElementById('grilleInstalledReturn').value;
+    const supplyTotal = document.getElementById('grilleTotalSupply').value;
+    const supplyInstalled = document.getElementById('grilleInstalledSupply').value;
+    
+    if (parseInt(returnInstalled) > parseInt(returnTotal)) {
+        alert('❌ Las rejillas de retorno instaladas no pueden ser mayores que el total');
+        return;
+    }
+    
+    if (parseInt(supplyInstalled) > parseInt(supplyTotal)) {
+        alert('❌ Las rejillas de suministro instaladas no pueden ser mayores que el total');
+        return;
+    }
+    
+    GrilleManager.saveConfig(level, returnTotal, returnInstalled, supplyTotal, supplyInstalled);
+    
+    // Limpiar formulario
+    document.getElementById('grilleConfigForm').reset();
+    
+    // Actualizar vista
+    GrilleManager.updateSummary();
+    GrilleManager.renderTable();
+    Dashboard.update();
+    
+    alert('✅ Configuración de rejillas guardada exitosamente');
+}
+function cleanAllData() {
+    if (confirm('⚠️ ¿Estás ABSOLUTAMENTE seguro?\n\nEsta acción eliminará:\n- Todos los tickets\n- Configuración de termostatos\n- Configuración de rejillas\n- Todos los logs\n\nEsta acción NO se puede deshacer.')) {
+        if (confirm('⚠️ ÚLTIMA ADVERTENCIA\n\nSe borrarán TODOS los datos del sistema.\n¿Deseas continuar?')) {
+            
+            // Limpiar todo el localStorage
+            localStorage.removeItem('domus_tickets');
+            localStorage.removeItem('domus_logs');
+            localStorage.removeItem('domus_thermostats');
+            localStorage.removeItem('domus_grilles');
+            
+            // Actualizar interfaz
+            Dashboard.update();
+            
+            // Mostrar mensaje
+            alert('✅ Todos los datos han sido eliminados exitosamente.\nEl sistema está como nuevo.');
+            
+            // Recargar para asegurar limpieza completa
+            location.reload();
+        }
+    }
+}
