@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOMUS HVAC - Gestión de Tickets</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="logo">
+                <h2>DOMUS HVAC</h2>
+                <p>Torre DOMUS - 13 Niveles</p>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#" onclick="showSection('dashboard')" class="active">📊 Dashboard</a></li>
+                <li><a href="#" onclick="showSection('tickets')">🎫 Tickets</a></li>
+                <li><a href="#" onclick="showSection('new-ticket')">➕ Nuevo Ticket</a></li>
+                <li><a href="#" onclick="showSection('logs')">📋 Logs del Proyecto</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="section active">
+                <h1>Dashboard - Torre DOMUS</h1>
+                <div class="dashboard-grid">
+                    <div class="stat-card">
+                        <h3>Total Tickets</h3>
+                        <div class="stat-number" id="totalTickets">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Tickets Abiertos</h3>
+                        <div class="stat-number" id="openTickets">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Tickets Cerrados</h3>
+                        <div class="stat-number" id="closedTickets">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Niveles con Incidencias</h3>
+                        <div class="stat-number" id="affectedLevels">0</div>
+                    </div>
+                </div>
+                
+                <div class="recent-activity">
+                    <h2>Últimos Tickets</h2>
+                    <div id="recentTickets" class="ticket-list"></div>
+                </div>
+            </section>
+
+            <!-- Tickets Section -->
+            <section id="tickets" class="section">
+                <h1>Gestión de Tickets</h1>
+                <div class="filters">
+                    <select id="filterStatus" onchange="filterTickets()">
+                        <option value="all">Todos los Estados</option>
+                        <option value="abierto">Abiertos</option>
+                        <option value="en-progreso">En Progreso</option>
+                        <option value="cerrado">Cerrados</option>
+                    </select>
+                    <select id="filterLevel" onchange="filterTickets()">
+                        <option value="all">Todos los Niveles</option>
+                        <option value="Lobby">Lobby</option>
+                    </select>
+                </div>
+                <div id="allTickets" class="ticket-list"></div>
+            </section>
+
+            <!-- New Ticket Section -->
+<section id="new-ticket" class="section">
+    <h1>Crear Nuevo Ticket</h1>
+    <form id="ticketForm" onsubmit="createTicket(event)">
+        <div class="form-group">
+    <label for="ticketCondominium">Condominio</label>
+    <input type="text" id="ticketCondominium" required 
+           placeholder="Ej: Torre DOMUS - Nivel 5, Depto 502"
+           list="condominiumSuggestions">
+    <datalist id="condominiumSuggestions">
+        <option value="Torre DOMUS">
+        <option value="Torre A">
+        <option value="Torre B">
+        <option value="Torre C">
+        <option value="Torre D">
+    </datalist>
+    <small style="color: #666; display: block; margin-top: 5px;">
+        💡 Puedes escribir libremente o seleccionar de las sugerencias
+    </small>
+</div>
+        
+        <div class="form-group">
+            <label for="ticketTitle">Título del Ticket</label>
+            <input type="text" id="ticketTitle" required placeholder="Ej: Fuga en ducto de aire acondicionado">
+        </div>
+        
+        <div class="form-group">
+            <label for="ticketLevel">Nivel</label>
+            <select id="ticketLevel" required>
+                <option value="">Seleccionar nivel</option>
+                <!-- Se llenará dinámicamente -->
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="ticketPriority">Prioridad</label>
+            <select id="ticketPriority" required>
+                <option value="baja">Baja</option>
+                <option value="media" selected>Media</option>
+                <option value="alta">Alta</option>
+                <option value="critica">Crítica</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="ticketDescription">Descripción</label>
+            <textarea id="ticketDescription" required placeholder="Describe el problema encontrado..."></textarea>
+        </div>
+        
+        <div class="form-group">
+            <label for="ticketSystem">Sistema HVAC</label>
+            <select id="ticketSystem" required>
+                <option value="">Seleccionar sistema</option>
+                <option value="Equipo">Equipo</option>
+                <option value="Drenaje">Drenaje</option>
+                <option value="Ducteria">Ductería</option>
+                <option value="Sistema de Control">Sistema de Control</option>
+            </select>
+        </div>
+        
+        <button type="submit" class="btn-primary">Crear Ticket</button>
+    </form>
+</section>
+<!-- Edit Ticket Section -->
+<section id="edit-ticket" class="section">
+    <h1>Modificar Ticket</h1>
+    <div id="editTicketContainer" style="display: none;">
+        <form id="editTicketForm" onsubmit="updateTicket(event)">
+            <input type="hidden" id="editTicketId">
+            
+            <div class="form-group">
+    <label for="editTicketCondominium">Condominio</label>
+    <input type="text" id="editTicketCondominium" required 
+           placeholder="Ej: Torre DOMUS - Nivel 5, Depto 502"
+           list="editCondominiumSuggestions">
+    <datalist id="editCondominiumSuggestions">
+        <option value="Torre DOMUS">
+        <option value="Torre A">
+        <option value="Torre B">
+        <option value="Torre C">
+        <option value="Torre D">
+    </datalist>
+    <small style="color: #666; display: block; margin-top: 5px;">
+        💡 Puedes escribir libremente o seleccionar de las sugerencias
+    </small>
+</div>
+            
+            <div class="form-group">
+                <label for="editTicketTitle">Título del Ticket</label>
+                <input type="text" id="editTicketTitle" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="editTicketLevel">Nivel</label>
+                <select id="editTicketLevel" required>
+                    <!-- Se llenará dinámicamente -->
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="editTicketPriority">Prioridad</label>
+                <select id="editTicketPriority" required>
+                    <option value="baja">Baja</option>
+                    <option value="media">Media</option>
+                    <option value="alta">Alta</option>
+                    <option value="critica">Crítica</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="editTicketDescription">Descripción</label>
+                <textarea id="editTicketDescription" required></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="editTicketSystem">Sistema HVAC</label>
+                <select id="editTicketSystem" required>
+                    <option value="">Seleccionar sistema</option>
+                    <option value="Equipo">Equipo</option>
+                    <option value="Drenaje">Drenaje</option>
+                    <option value="Ducteria">Ductería</option>
+                    <option value="Sistema de Control">Sistema de Control</option>
+                </select>
+            </div>
+            
+            <div style="display: flex; gap: 10px;">
+                <button type="submit" class="btn-primary">Guardar Cambios</button>
+                <button type="button" class="btn-cancel" onclick="cancelEdit()">Cancelar</button>
+            </div>
+        </form>
+    </div>
+    <div id="noTicketSelected" style="text-align: center; padding: 50px; color: #999;">
+        <h3>Selecciona un ticket para modificar</h3>
+        <p>Ve a la sección de Tickets y haz clic en "Modificar" en el ticket que deseas editar</p>
+    </div>
+</section>
+            <!-- Logs Section -->
+            <section id="logs" class="section">
+                <h1>Logs del Proyecto</h1>
+                <div class="logs-container" id="projectLogs"></div>
+            </section>
+        </main>
+    </div>
+
+    <script src="data/storage.js"></script>
+    <script src="js/tickets.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
